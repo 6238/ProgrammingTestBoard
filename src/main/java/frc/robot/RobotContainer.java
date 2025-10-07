@@ -4,15 +4,26 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.subsystems.MotorSubsystem;
 
 public class RobotContainer {
+  public MotorSubsystem motorSubsystem;
+  public CommandXboxController controller;
+
   public RobotContainer() {
+    controller = new CommandXboxController(0);
+    motorSubsystem = new MotorSubsystem();
+
     configureBindings();
   }
 
   private void configureBindings() {
+    controller.a().onTrue(motorSubsystem.setPosition(() -> Units.degreesToRotations(0)));
+    controller.b().onTrue(motorSubsystem.setPosition(() -> Units.degreesToRotations(90)));
   }
 
   public Command getAutonomousCommand() {
