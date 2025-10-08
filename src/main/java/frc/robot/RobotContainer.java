@@ -6,9 +6,14 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import frc.robot.subsystems.MotorSubsystem;
 
 public class RobotContainer {
+  public MotorSubsystem motorSubsystem;
+
   public RobotContainer() {
+    motorSubsystem = new MotorSubsystem();
+    
     configureBindings();
   }
 
